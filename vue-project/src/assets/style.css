@@ -46,7 +46,10 @@ h1 {
 .wrong-letters-container {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 0px;
+  max-width: 110px;
+  max-height: 150px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   text-align: right;
