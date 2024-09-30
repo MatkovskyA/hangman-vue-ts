@@ -10,7 +10,7 @@ import { useRandomWord } from './composables/useRandomWord'
 import { useLetters } from './composables/useLetters'
 
 const {word, getRandomWord} = useRandomWord();
-const {letters, correctLetters, wrongtLetters, isLose, isWin, addLetter} = useLetters(word)
+const {letters, correctLetters, wrongtLetters, isLose, isWin, addLetter, resetLetters} = useLetters(word)
 
 const notification = ref<InstanceType<typeof GameNotification> | null>(null)
 const popup = ref<InstanceType<typeof GamePopup> | null>(null)
@@ -42,8 +42,7 @@ window.addEventListener('keydown', ({ key }) => {
 
 const restart = async() => {
   await getRandomWord()
-
-  letters.value = [];
+  resetLetters()
   popup.value?.close()
 }
 </script>

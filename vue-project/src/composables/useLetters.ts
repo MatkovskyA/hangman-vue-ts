@@ -13,12 +13,17 @@ export const useLetters = (word: Ref<string>) => {
       letters.value.push(key.toLowerCase())
     }
   }
+
+  const resetLetters = () => {
+    letters.value = [];
+  }
   return {
     letters,
     correctLetters,
     wrongtLetters,
     isLose,
     isWin,
-    addLetter
+    addLetter,
+    resetLetters
   }
 }
