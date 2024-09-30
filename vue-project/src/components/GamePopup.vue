@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import type { GameStatus } from './types/GameStatus';
 import { ref } from 'vue'
 
-type Status = 'win' | 'lose';
+interface Props {
+  word: string
+}
 
-const gameStatus = ref<Status | null>(null)
+defineProps<Props>()
 
+const gameStatus = ref<GameStatus | null>(null)
 const isVisible = ref(false)
 
-const open = (status: Status) => {
+const open = (status: GameStatus) => {
   gameStatus.value = status;
   isVisible.value = true
 }
@@ -23,6 +27,7 @@ defineExpose({
 const emit = defineEmits<{
   (e: 'restart'): void
 }>()
+
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const emit = defineEmits<{
       <h2 v-if="gameStatus === 'win'">Поздравляю, вы победили! 😃</h2>
       <template v-else>
         <h2>Вы проиграли. 😕</h2>
-        <h3>...имя: Лидия</h3>
+        <h3>...имя: {{ word }}</h3>
       </template>
       <button @click="emit('restart')">Сыграть еще раз</button>
     </div>
